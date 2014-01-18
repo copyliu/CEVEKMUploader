@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CEVEKMUploader", "CEVEKMUploader\CEVEKMUploader.csproj", "{252855FB-DA53-45CC-9020-4B20CE86C0CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EveCacheParser", "EveCacheParser\EveCacheParser.csproj", "{8948DCA5-C664-4093-A1FC-6C37C575FBE0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{252855FB-DA53-45CC-9020-4B20CE86C0CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{252855FB-DA53-45CC-9020-4B20CE86C0CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{252855FB-DA53-45CC-9020-4B20CE86C0CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{252855FB-DA53-45CC-9020-4B20CE86C0CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8948DCA5-C664-4093-A1FC-6C37C575FBE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8948DCA5-C664-4093-A1FC-6C37C575FBE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8948DCA5-C664-4093-A1FC-6C37C575FBE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8948DCA5-C664-4093-A1FC-6C37C575FBE0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
