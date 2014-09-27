@@ -47,7 +47,9 @@ namespace CEVEKMUploader
             return list;
         }
 
-
+        /// <summary>
+        /// 开始上传
+        /// </summary>
         private void start_upload()
         {
             if (cachedFiles.Count() == 0)
@@ -73,6 +75,7 @@ namespace CEVEKMUploader
                 {
                 }
             }
+            //界面更新
             this.Invoke((MethodInvoker)delegate
             {
                 textBox1.AppendText("读取完成, 总共" + killmails.Count + "封 KillMail." + Environment.NewLine);
@@ -84,12 +87,12 @@ namespace CEVEKMUploader
             var kmlists = splitList(killmails);
             try
             {
+                //上传内容
                 foreach (var kmlist in kmlists)
                 {
-                    var output = JsonConvert.SerializeObject(kmlist);
-
-
-
+                    var output = JsonConvert.SerializeObject(kmlist);    //生成Json
+                    
+                    //使用httpWebRequest进行上传（需要获取Cookie?）
                     var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://kb.ceve-market.org/uploadjson/");
                     httpWebRequest.ContentType = "text/json";
                     httpWebRequest.Method = "POST";
@@ -122,7 +125,10 @@ namespace CEVEKMUploader
             //this.Invoke((MethodInvoker)(() => {  button1.Enabled = true; }));
         }
 
-
+        /// <summary>
+        /// 检查返回值
+        /// </summary>
+        /// <param name="result">钥匙对</param>
         private static void CheckResult(KeyValuePair<object, object> result)
         {
             if (result.Key == null || result.Value == null)
@@ -202,6 +208,9 @@ namespace CEVEKMUploader
             catch { }
         }
 
+        /// <summary>
+        /// 托盘处理
+        /// </summary>
         private void Form1_Resize(object sender, EventArgs e)
         {
             if (this.WindowState == FormWindowState.Minimized)
@@ -260,6 +269,11 @@ namespace CEVEKMUploader
             timer1.Start();
         }
 
+        /// <summary>
+        /// 图标使用资源图标
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form1_Load(object sender, EventArgs e)
         {
             timer1.Interval = 3600 * 1000;
