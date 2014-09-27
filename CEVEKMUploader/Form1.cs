@@ -9,8 +9,11 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using System.Diagnostics;
+using System.Resources;
 using EveCacheParser;
 using Newtonsoft.Json;
+
 namespace CEVEKMUploader
 {
     public partial class Form1 : Form
@@ -187,22 +190,82 @@ namespace CEVEKMUploader
                         }
                         break;
                     }
-
-
             }
-
-
-
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
             try
             {
-                System.Diagnostics.Process.Start("http://kb.ceve-market.org");
+                Process.Start("http://kb.ceve-market.org");
             }
             catch { }
         }
 
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+                this.Hide();
+
+        }
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                this.Show();
+                this.WindowState = FormWindowState.Normal;
+                this.BringToFront();
+            }else
+            {
+                if (this.WindowState == FormWindowState.Normal) this.WindowState = FormWindowState.Minimized;
+            }
+
+        }
+
+        private void 退出ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Application.Exit();
+        }
+
+        private void 显示ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                this.Show();
+                this.WindowState = FormWindowState.Normal;
+                this.BringToFront();
+            }
+            else
+            {
+                if (this.WindowState == FormWindowState.Normal) this.WindowState = FormWindowState.Minimized;
+            }
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            try { Process.Start("http://ceve-market.org/"); }
+            catch { }
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            try { Process.Start("http://kb.ceve-market.org"); }
+            catch { }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            button1.PerformClick();
+            timer1.Start();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            timer1.Interval = 3600 * 1000;
+            timer1.Start();
+            this.Icon = global::CEVEKMUploader.Properties.Resources.KM_logo;
+            notifyIcon1.Icon = global::CEVEKMUploader.Properties.Resources.KM_logo;
+        }
     }
 }
