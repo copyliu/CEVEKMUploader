@@ -34,7 +34,6 @@ namespace CEVEKMUploader
             thread.Start();
         }
 
-
         public static List<List<Dictionary<object, object>>> splitList(List<Dictionary<object, object>> locations, int nSize = 30)
         {
             List<List<Dictionary<object, object>>> list = new List<List<Dictionary<object, object>>>();
@@ -43,7 +42,6 @@ namespace CEVEKMUploader
             {
                 list.Add(locations.GetRange(i, Math.Min(nSize, locations.Count - i)));
             }
-
             return list;
         }
 
@@ -68,12 +66,8 @@ namespace CEVEKMUploader
                     KeyValuePair<object, object> result = Parser.Parse(cachedFile);
                     CheckResult(result);
                 }
-                catch (ParserException ex)
-                {
-                }
-                catch (Exception ex)
-                {
-                }
+                catch (ParserException ex) { }
+                catch (Exception ex) { }
             }
             //界面更新
             this.Invoke((MethodInvoker)delegate
@@ -121,7 +115,6 @@ namespace CEVEKMUploader
             {
                 this.Invoke((MethodInvoker)(() => { textBox1.AppendText("上传失败" + Environment.NewLine); button1.Enabled = true; }));
             }
-
             //this.Invoke((MethodInvoker)(() => {  button1.Enabled = true; }));
         }
 
@@ -169,11 +162,7 @@ namespace CEVEKMUploader
                             }
 
                         }
-                        catch (Exception)
-                        {
-
-
-                        }
+                        catch (Exception) { }
                         break;
 
                     }
@@ -189,11 +178,7 @@ namespace CEVEKMUploader
                                     killmails.Add((Dictionary<object, object>)o);
                             }
                         }
-                        catch (Exception)
-                        {
-
-
-                        }
+                        catch (Exception) { }
                         break;
                     }
             }
@@ -215,8 +200,8 @@ namespace CEVEKMUploader
         {
             if (this.WindowState == FormWindowState.Minimized)
                 this.Hide();
-
         }
+
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (this.WindowState == FormWindowState.Minimized)
@@ -224,11 +209,11 @@ namespace CEVEKMUploader
                 this.Show();
                 this.WindowState = FormWindowState.Normal;
                 this.BringToFront();
-            }else
+            }
+            else
             {
                 if (this.WindowState == FormWindowState.Normal) this.WindowState = FormWindowState.Minimized;
             }
-
         }
 
         private void 退出ToolStripMenuItem_Click(object sender, EventArgs e)
