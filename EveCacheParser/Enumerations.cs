@@ -1,20 +1,20 @@
-# region License
+ï»¿# region License
 /* EVECacheParser - .NET 4/C# EVE Cache File Parser Library
- * Copyright © 2012 Jimi 'Desmont McCallock' C <jimikar@gmail.com>
+ * Copyright Â© 2012 Jimi 'Desmont McCallock' C <jimikar@gmail.com>
  *
  * Based on:
  * - reverence - Python library for processing EVE Online cache and bulkdata
- *    Copyright © 2003-2011 Jamie 'Entity' van den Berge <jamie@hlekkir.com>
+ *    Copyright Â© 2003-2011 Jamie 'Entity' van den Berge <jamie@hlekkir.com>
  *    https://github.com/ntt/reverence
  *
  * - libevecache - C++ EVE online reverse engineered cache reading library
- *    Copyright © 2009-2010  StackFoundry LLC and Yann 'Kaladr' Ramin <yann@stackfoundry.com>
+ *    Copyright Â© 2009-2010  StackFoundry LLC and Yann 'Kaladr' Ramin <yann@stackfoundry.com>
  *    http://dev.eve-central.com/libevecache/
  *    http://gitorious.org/libevecache
  *    https://github.com/theatrus/libevecache
  *
  * - EveCache.Net - A port of libevecache to C#
- *    Copyright © 2011 Jason 'Jay Wareth' Watkins <jason@blacksunsystems.net>
+ *    Copyright Â© 2011 Jason 'Jay Wareth' Watkins <jason@blacksunsystems.net>
  *    https://github.com/jwatkins42/EveCache.Net
  * 
  * This library is free software; you can redistribute it and/or

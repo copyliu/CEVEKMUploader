@@ -43,6 +43,12 @@ namespace EveCacheParser
     {
         #region CacheFilesFinder Methods
 
+        public static void clearresult()
+        {
+            CachedFilesFinder.clearresult();
+        }
+
+
         /// <summary>
         /// Sets the folders to look for cached files.
         /// </summary>

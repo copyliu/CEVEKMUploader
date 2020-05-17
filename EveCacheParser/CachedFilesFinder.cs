@@ -49,13 +49,19 @@ namespace EveCacheParser
         private static List<string> s_includedFolders = new List<string>();
 
         private const string EVESettingsPath = @"CCP\EVE";
-        private const string CacheFolderPath = @"cache\MachoNet\211.144.214.68";
-        private const string ServerLookupName = "*_211.144.214.68";
+        private const string CacheFolderPath = @"cache\MachoNet\42.186.79.5";
+        private const string ServerLookupName = "*_serenity.evepc.163.com";
         private const string DefaultFolderLookupName = "CachedMethodCalls";
         private const string BulkdataFolderName = "bulkdata";
         private const string CacheFileExtensionLookup = "*.cache*";
         private const string CacheFile2ExtensionLookup = "*.cache2";
 
+        public static  void clearresult()
+        {
+            s_methodIncludeFilter=new List<string>();
+            s_methodExcludeFilter=new List<string>();
+            s_includedFolders=new List<string>();
+        }
         /// <summary>
         /// Sets the folders to look for cached files.
         /// </summary>
@@ -166,7 +172,7 @@ namespace EveCacheParser
             // Finds the cached files that are legit EVE files and satisfy the methods search criteria
             return cachedFiles.Where(cachedFile => cachedFile.Exists).Select(
                 cachedFile => new CachedFileReader(cachedFile, false)).Where(
-                    reader => reader.Buffer.First() == (byte)StreamType.StreamStart).Where(
+                    reader => reader.Buffer.Length>0 && reader.Buffer.First() == (byte)StreamType.StreamStart).Where(
                         cachedFile =>
                         s_methodIncludeFilter.Any()
                             ? s_methodIncludeFilter.Any(method => Encoding.ASCII.GetString(cachedFile.Buffer).Contains(method))

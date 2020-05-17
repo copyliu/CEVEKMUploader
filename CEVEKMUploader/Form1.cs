@@ -47,15 +47,16 @@ namespace CEVEKMUploader
 
         private void start_upload()
         {
-            if (cachedFiles.Count() == 0)
-            {
-                Parser.SetCachedFilesFolders("CachedMethodCalls");
+            Parser.clearresult();
+//            if (cachedFiles.Count() == 0)
+//            {
+            Parser.SetCachedFilesFolders("CachedMethodCalls");
                 Parser.SetIncludeMethodsFilter("GetRecentKillsAndLosses");
                 Parser.SetIncludeMethodsFilter("GetRecentShipKillsAndLosses");
                 Parser.SetIncludeMethodsFilter("GetKillMail");
 
                 cachedFiles = Parser.GetMachoNetCachedFiles();
-            }
+//            }
             foreach (FileInfo cachedFile in cachedFiles /*.Where(x => x.Name == "9d34.cache")*/)
             {
                 try
@@ -83,14 +84,63 @@ namespace CEVEKMUploader
             {
                 foreach (var kmlist in kmlists)
                 {
-                    var output = JsonConvert.SerializeObject(kmlist);
+
+                    List<Dictionary<string,string> > kmseri=new List<Dictionary<string, string>>();
+                    foreach (var v in kmlist)
+                    {
+                        var km = new Dictionary<string, string>();
+                        if (v.ContainsKey("victimCharacterID"))
+                        {
+                            km.Add("victimCharacterID", v["victimCharacterID"] + "");
+                        }
+                        else
+                        {
+                            km.Add("victimCharacterID", "0");
+                        }
+                        if (v.ContainsKey("finalCharacterID"))
+                        {
+                            km.Add("finalCharacterID", v["finalCharacterID"] + "");
+                        }
+                        else
+                        {
+                            km.Add("finalCharacterID", "0");
+                        }
+                        if (v.ContainsKey("victimShipTypeID"))
+                        {
+                            km.Add("victimShipTypeID", v["victimShipTypeID"] + "");
+                        }
+                        else
+                        {
+                            km.Add("victimShipTypeID", "0");
+                        }
+                        if (v.ContainsKey("killTime"))
+                        {
+                            km.Add("killTime", v["killTime"] + "");
+                        }
+                        else
+                        {
+                            km.Add("killTime", "0");
+                        }
+                        if (v.ContainsKey("killID"))
+                        {
+                            km.Add("killID", v["killID"] + "");
+                        }
+                        else
+                        {
+                            km.Add("killID", "0");
+                        }
+                        kmseri.Add(km);
+
+                    }
+
+
+                    var output = JsonConvert.SerializeObject(kmseri);
 
 
 
-                    var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://kb.ceve-market.org/uploadjson/");
+                    var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://kb.ceve-market.org/uploadjson/");
                     httpWebRequest.ContentType = "text/json";
                     httpWebRequest.Method = "POST";
-
                     using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
                     {
                         string json = output;
@@ -109,7 +159,7 @@ namespace CEVEKMUploader
                     this.Invoke((MethodInvoker)(() => { progressBar1.Value += kmlist1.Count; }));
 
                 }
-                this.Invoke((MethodInvoker)(() => { textBox1.AppendText("上传完成" + Environment.NewLine); }));
+                this.Invoke((MethodInvoker)(() => { textBox1.AppendText("上传完成" + Environment.NewLine); button1.Enabled = true; }));
             }
             catch
             {
@@ -199,7 +249,8 @@ namespace CEVEKMUploader
         {
             try
             {
-                System.Diagnostics.Process.Start("http://kb.ceve-market.org");
+                System.Diagnostics.Process.Start("https://kb.ceve-market.org");
+                
             }
             catch { }
         }
